@@ -912,7 +912,10 @@ class PyMISP(object):
         if kwargs.get('org') is not None:
             query['org'] = kwargs.get('org')
 
+        atag = self.__prepare_rest_search(kwargs.get('attributeTags'),kwargs.get('not_attributeTags'))
         tag = self.__prepare_rest_search(kwargs.get('tags'), kwargs.get('not_tags'))
+        if len(atag) != 0:
+            query['attributeTags'] = atag
         if len(tag) != 0:
             query['tags'] = tag
 
